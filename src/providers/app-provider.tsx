@@ -9,6 +9,7 @@ import i18n from '@/locales/i18n';
 const queryClient = new QueryClient();
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
+
     return (
         <QueryClientProvider client={queryClient}>
             <I18nextProvider i18n={i18n}>

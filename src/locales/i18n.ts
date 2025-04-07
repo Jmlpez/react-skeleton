@@ -1,13 +1,17 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Importaciones dinámicas de traducciones
+// English
+import enAuth from './en/auth.json';
+import enCommon from './en/common.json';
+import enPages from './en/pages.json';
 
-const loadTranslations = async (lang: string) => ({
-    common: await import(`./${lang}/common.json`),
-    pages: await import(`./${lang}/pages.json`),
-    auth: await import(`./${lang}/auth.json`),
-});
+// Spanish
+import esAuth from './es/auth.json';
+import esCommon from './es/common.json';
+import esPages from './es/pages.json';
+
+export const defaultNS = 'common';
 
 i18n.use(initReactI18next).init({
     fallbackLng: 'en',
@@ -15,12 +19,20 @@ i18n.use(initReactI18next).init({
     interpolation: {
         escapeValue: false,
     },
+    defaultNS,
     resources: {
-        en: await loadTranslations('en'),
-        es: await loadTranslations('es'),
+        en: {
+            pages: enPages,
+            common: enCommon,
+            auth: enAuth,
+        },
+        es: {
+            pages: esPages,
+            common: esCommon,
+            auth: esAuth,
+        },
     },
     ns: ['common', 'pages', 'auth'],
-    defaultNS: 'common',
     react: {
         useSuspense: false,
     },

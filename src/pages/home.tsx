@@ -9,13 +9,16 @@ type HomeProps = {
 export const Home = (props: HomeProps) => {
     const { title = 'Hey' } = props;
     const { t, i18n } = useTranslation('pages');
+
     return (
         <div className="rounded-lg bg-gray-100 p-6 shadow-md">
             <PageMetaData
                 title={'Home'}
                 description={'Descripción del home'}
             />
-            <h1 className="text-2xl font-bold text-gray-800">{title}</h1>
+            <h1 className="text-2xl font-bold text-gray-800">
+                {t('home.title')} - {title}
+            </h1>
             <h2 className="mt-4 text-xl text-gray-700">This is the main content!</h2>
             <div className="mt-4 rounded-lg bg-white p-4 shadow-sm">
                 <span className="text-gray-600">API KEY</span>
