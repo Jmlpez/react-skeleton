@@ -126,6 +126,9 @@
             "@components/*": [
                 "src/components/*"
             ],
+            "@locales/*": [
+                "src/locales/*"
+            ],
             "@utils": [
                 "src/lib/utils.ts"
             ],
