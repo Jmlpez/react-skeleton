@@ -1,54 +1,63 @@
-# React + TypeScript + Vite
+# Project Skeleton
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a skeleton template for building a React application with TypeScript, Vite, and Tailwind CSS. It provides a solid foundation with a set of pre-configured tools and libraries to streamline the development process.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Main Goal
 
-## Expanding the ESLint configuration
+The main goal of this project is to offer a starting point for developers to quickly set up a modern web application with best practices and essential tools. It includes configurations for TypeScript, Vite, Tailwind CSS, and several useful libraries to enhance development efficiency and code quality.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Key Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **TypeScript**: Provides static typing to catch errors early and improve code quality.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **i18n**: Internationalization support for multi-language applications.
+- **react-helmet-async**: Manage changes to the document head.
+- **@tanstack/react-query**: Powerful data-fetching and state management for React.
+- **@headlessui/react**: Unstyled, fully accessible UI components for React.
+
+## Getting Started
+
+To get started with this project, clone the repository and install the dependencies:
+
+```sh
+git clone <repository-url>
+cd skeleton
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To start the development server, run:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```sh
+npm run dev
 ```
+
+To build the project for production, run:
+
+```sh
+npm run build
+```
+
+To run tests, use:
+
+```sh
+npm run test
+```
+
+## Directory Structure
+
+- `assets/`: Contains css files, images and other static assets.
+- `components/`: Contains reusable React components.
+- `hooks`: Contains useful custom hooks
+- `locales/`: Contains i18n configuration and translation files.
+- `router`: Contains react router configuration and route components.
+- `pages`: Contains the main pages of the application.
+- `layouts`: Contains layout components for the application.
+- `providers`: Contains context providers for state management and other functionalities.
+- `services`: Contains API service files for data fetching.
+
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
