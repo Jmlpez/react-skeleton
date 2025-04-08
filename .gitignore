@@ -29,3 +29,5 @@ jspm_packages/
 *.pem
 *.log
 *.lock
+
+src/demos
