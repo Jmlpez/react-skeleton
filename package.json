@@ -1,5 +1,5 @@
 {
-  "name": "skeleton",
+  "name": "@migrators/skeleton",
   "private": true,
   "version": "0.0.0",
   "type": "module",
