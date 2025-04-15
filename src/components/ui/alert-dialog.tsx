@@ -1,10 +1,11 @@
 import { cn } from '@/lib/utils';
 import { Dialog, DialogOverlay, DialogPortal } from '@components/ui/dialog';
+import { Button } from '@headlessui/react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { CheckCircle, Info, TriangleAlert } from 'lucide-react';
+import { AlertCircle, CheckCircle, Info, LucideX, TriangleAlert } from 'lucide-react';
 import React from 'react';
 
-export type AlertVariant = 'success' | 'info' | 'alert';
+export type AlertVariant = 'success' | 'info' | 'warning' | 'error';
 
 /**
  * Props for the Alert component, handling interactive visual notifications.
@@ -78,6 +79,15 @@ const variantStyles = {
         ), // Emerald 500
         headerColor: '#10B981',
     },
+    warning: {
+        icon: (
+            <TriangleAlert
+                size={64}
+                style={{ color: '#F59E0B', ...popInAnimation }}
+            />
+        ), // Emerald 500
+        headerColor: '#F59E0B',
+    },
     info: {
         icon: (
             <Info
@@ -87,9 +97,9 @@ const variantStyles = {
         ), // Blue 500
         headerColor: '#3B82F6',
     },
-    alert: {
+    error: {
         icon: (
-            <TriangleAlert
+            <AlertCircle
                 size={64}
                 style={{ color: '#EF4444', ...popInAnimation }}
             />
@@ -139,12 +149,9 @@ export const AlertDialog = (props: AlertProps) => {
                         {actions && <div className="mt-6 flex justify-center space-x-3">{actions}</div>}
                     </div>
                     <DialogPrimitive.Close asChild>
-                        <button
-                            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-                            aria-label="Close"
-                        >
-                            ✕
-                        </button>
+                        <Button className={'absolute top-3 right-3'}>
+                            <LucideX className="text-gray-500 hover:text-gray-700" />
+                        </Button>
                     </DialogPrimitive.Close>
                 </DialogPrimitive.Content>
             </DialogPortal>

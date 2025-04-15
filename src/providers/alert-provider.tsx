@@ -1,6 +1,6 @@
 import { AlertDialog, AlertVariant } from '@/components/ui/alert-dialog';
-import { Loader2 } from 'lucide-react';
-import React, { createContext, useContext, useState } from 'react';
+import { LucideLoader2 } from 'lucide-react';
+import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 interface AlertOptions {
     variant?: AlertVariant;
@@ -27,7 +27,7 @@ export const useAlert = () => {
     return context;
 };
 
-export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AlertProvider = ({ children }: PropsWithChildren) => {
     const [alertOptions, setAlertOptions] = useState<AlertOptions | null>(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [canClose, setCanClose] = useState<boolean>(true);
@@ -41,7 +41,6 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     const hideAlert = () => {
         setIsOpen(false);
-        setAlertOptions(null);
     };
 
     const setClosable = (closable: boolean) => {
@@ -64,7 +63,7 @@ export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                         <span>
                             {alertOptions?.showLoadingIcon && (
                                 <span className="mt-4 flex justify-center">
-                                    <Loader2 className={'animate-spin'} />
+                                    <LucideLoader2 className={'animate-spin'} />
                                 </span>
                             )}
                         </span>
