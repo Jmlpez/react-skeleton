@@ -1,12 +1,12 @@
 import js from '@eslint/js';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import prettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import tsdocPlugin from 'eslint-plugin-tsdoc';
 import globals from 'globals';
 import typescript from 'typescript-eslint';
-import pluginQuery from '@tanstack/eslint-plugin-query'
 
-/** @type {import('eslint').Linter.Config[]} */
 export default [
     js.configs.recommended,
     ...typescript.configs.recommended,
@@ -46,14 +46,16 @@ export default [
     {
         plugins: {
             'react-hooks': reactHooks,
+            tsdoc: tsdocPlugin,
         },
         rules: {
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'warn',
+            'tsdoc/syntax': 'warn',
         },
     },
     {
-        ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js'],
+        ignores: ['node_modules', 'public', 'dist', 'tailwind.config.js'],
     },
     prettier, // Turn off all rules that might conflict with Prettier
 ];

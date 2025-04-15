@@ -14,7 +14,7 @@ export const cn = (...inputs: ClassValue[]) => {
 /**
  * Get list of string from members (keys) of a given Enum
  *
- * @param enumType Enum Type
+ * @param enumType - Enum Type
  * @returns Enum members as a list of strings
  */
 export const getEnumKeys = (enumType: Record<string, string | number>): Array<string> =>
@@ -28,7 +28,7 @@ export const getEnumKeys = (enumType: Record<string, string | number>): Array<st
  *
  * The function can be called as:  await sleep(1000)  or  sleep(1000).then(...)
  *
- * @param ms sleep time in milliseconds
+ * @param ms - sleep time in milliseconds
  * @returns Empty Promise
  */
 export const sleep = (ms: number): Promise<void> => {
@@ -38,15 +38,16 @@ export const sleep = (ms: number): Promise<void> => {
 /**
  * Implements the "nameof" operator.
  *
- * Usage:
+ * @example
  *
+ *```ts
  * interface Person {
  *    firstName: string;
  *   lastName: string;
  * }
  *
  * const personName = nameof<Person>("firstName");    //returns "firstName"
- *
+ *```
  * Reference: https://schneidenbach.gitbooks.io/typescript-cookbook/content/nameof-operator.html
  *
  * @returns EnumListItems list

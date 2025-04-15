@@ -1,26 +1,73 @@
 import { cn } from '@/lib/utils';
 import { Dialog, DialogOverlay, DialogPortal } from '@components/ui/dialog';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { AlertCircle, CheckCircle, Info } from 'lucide-react';
+import { CheckCircle, Info, TriangleAlert } from 'lucide-react';
 import React from 'react';
 
 export type AlertVariant = 'success' | 'info' | 'alert';
 
+/**
+ * Props for the Alert component, handling interactive visual notifications.
+ *
+ * @example
+ * ```ts
+ * <Alert
+ *   open={true}
+ *   onOpenChange={(isOpen) => console.log(isOpen)}
+ *   title="Success"
+ *   description="Operation completed"
+ *   variant="success"
+ * />
+ * ```
+ */
 interface AlertProps {
+    /**
+     * Controls whether the alert is visible.
+     */
     open: boolean;
+
+    /**
+     * Callback triggered when visibility state changes.
+     * @param open - New visibility value
+     */
     onOpenChange: (open: boolean) => void;
+
+    /** Primary alert title (required) */
     title: string;
+
+    /**
+     * Detailed description or additional content.
+     * Can include React content like JSX.
+     */
     description?: string | React.ReactNode;
+
+    /**
+     * Visual style variant of the alert.
+     */
     variant?: AlertVariant;
+
+    /**
+     * Custom actions (buttons, icons, etc.)
+     * Rendered at the bottom of the alert.
+     */
     actions?: React.ReactNode;
+
+    /**
+     * Optional children content.
+     * Useful for advanced component composition.
+     */
     children?: React.ReactNode;
 }
 
+/**
+ * Animation for the icon when the alert dialog opens.
+ * This animation is applied to the icon using inline styles.
+ */
 const popInAnimation = {
     animation: 'popIn 0.5s ease-out',
 };
 
-// Define a modern, professional color palette for each variant
+// Defines icon and header color styles for each alert variant
 const variantStyles = {
     success: {
         icon: (
@@ -42,7 +89,7 @@ const variantStyles = {
     },
     alert: {
         icon: (
-            <AlertCircle
+            <TriangleAlert
                 size={64}
                 style={{ color: '#EF4444', ...popInAnimation }}
             />
@@ -51,7 +98,13 @@ const variantStyles = {
     },
 };
 
-export const AlertDialog: React.FC<AlertProps> = (props) => {
+/**
+ * A modal alert dialog that displays a variant-based icon, title, optional description,
+ * and actions. Ideal for showing success, info, or alert messages.
+ *
+ * @param props - Props for the alert dialog
+ */
+export const AlertDialog = (props: AlertProps) => {
     const { open, onOpenChange, title, description, variant = 'info', actions, children } = props;
 
     const currentVariant = variantStyles[variant];
