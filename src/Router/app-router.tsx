@@ -1,3 +1,4 @@
+import { DemoLoaderMenu } from '@/demos/demo-loader-menu';
 import { AppMainLayout } from '@/layouts/app-main-layout';
 import { Home } from '@/pages/home';
 import { AppProvider } from '@/providers/app-provider';
@@ -7,14 +8,20 @@ export const AppRouter = () => {
     return (
         <BrowserRouter>
             <AppProvider>
-                <Routes>
-                    <Route element={<AppMainLayout />}>
-                        <Route
-                            path="/"
-                            element={<Home />}
-                        />
-                    </Route>
-                </Routes>
+                <AppProvider>
+                    <Routes>
+                        <Route element={<AppMainLayout />}>
+                            <Route
+                                path="/"
+                                element={<Home />}
+                            />
+                            <Route
+                                path="/menu"
+                                element={<DemoLoaderMenu />}
+                            />
+                        </Route>
+                    </Routes>
+                </AppProvider>
             </AppProvider>
         </BrowserRouter>
     );
