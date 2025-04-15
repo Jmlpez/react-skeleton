@@ -132,6 +132,9 @@
             "@utils": [
                 "src/lib/utils.ts"
             ],
+            "@demos": [
+                "src/demos"
+            ],
             "@ui/*": [
                 "src/components/ui/*"
             ],

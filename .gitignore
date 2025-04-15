@@ -30,4 +30,4 @@ jspm_packages/
 *.log
 *.lock
 
-src/demos
+#src/demos
