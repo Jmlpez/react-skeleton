@@ -11,7 +11,7 @@ const demos = [
 ];
 
 export const DemoLoaderMenu = () => {
-    const [selectedDemo, setSelectedDemo] = useState(demos[2].id);
+    const [selectedDemo, setSelectedDemo] = useState(demos[1].id);
     const currentDemo = demos.find((demo) => demo.id === selectedDemo);
 
     return (
