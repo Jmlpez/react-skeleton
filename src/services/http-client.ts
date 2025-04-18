@@ -22,7 +22,7 @@ export class HttpClient {
     private async request<TResult>(endpoint: string, { method = 'GET', data }: RequestOptions): Promise<TResult> {
         const options: RequestInit = {
             method,
-            credentials: 'include',
+            // credentials: 'include',
             headers: this.defaultHeaders,
         };
 
@@ -32,14 +32,17 @@ export class HttpClient {
 
         const response = await fetch(this.baseUrl + endpoint, options);
 
+        // try {
         // Check for HTTP error statuses.
         if (!response.ok) {
             // Try to extract error details.
             const errorData = await response.json();
             throw new Error(JSON.stringify(errorData));
         }
-
         return response.json();
+        // } catch (e: unknown) {
+        // if (!(e instanceof KatanaApiError)) throw Error(UnknownError);
+        // }
     }
 
     async get<TResult>(endpoint: string): Promise<TResult> {

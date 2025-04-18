@@ -52,7 +52,10 @@ export const sleep = (ms: number): Promise<void> => {
  *
  * @returns EnumListItems list
  */
-export const nameofFactory = <T>() => (name: keyof T): keyof T => name;
+export const nameofFactory =
+    <T>() =>
+    (name: keyof T): keyof T =>
+        name;
 
 /**
  * Guest user ID constant.
@@ -66,7 +69,7 @@ export const GUEST_USER_ID = 0;
  * @param value - The value to save.
  * @param userId - The ID of the user.
  */
-export const saveToLS = (key: string, value: unknown, userId: number) => {
+export const saveToLSFromUser = (key: string, value: unknown, userId: number) => {
     if (value) localStorage.setItem(`user-${userId}-${key}`, JSON.stringify(value));
 };
 
@@ -77,7 +80,28 @@ export const saveToLS = (key: string, value: unknown, userId: number) => {
  * @param userId - The ID of the user.
  * @returns The value associated with the key for the specified user, or null if not found.
  */
-export const getFromLS = (key: string, userId: number) => {
+export const getFromLSFromUser = (key: string, userId: number) => {
     const value = window.localStorage.getItem(`user-${userId}-${key}`);
+    return value ? JSON.parse(value) : undefined;
+};
+
+/**
+ * Saves a value to local storage
+ *
+ * @param key - The key of the item to save.
+ * @param value - The value to save.
+ */
+export const saveToLS = (key: string, value: unknown) => {
+    if (value) localStorage.setItem(key, JSON.stringify(value));
+};
+
+/**
+ * Retrieves a value from local storage
+ *
+ * @param key - The key of the item to retrieve.
+ * @returns The value associated with the key for the specified user, or null if not found.
+ */
+export const getFromLS = (key: string) => {
+    const value = window.localStorage.getItem(key);
     return value ? JSON.parse(value) : undefined;
 };

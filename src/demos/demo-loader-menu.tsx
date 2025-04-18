@@ -1,17 +1,23 @@
 import { AlertDemo } from '@/demos/alert-demo/alert-demo';
+import { ReactQueryDemoLoader } from '@/demos/react-query-demo/react-query-demo-loader';
 import { ToastDemo } from '@/demos/toast-demo/toast-demo';
 import PageMetaData from '@components/PageMetaData';
+import { Button } from '@ui/button';
+import { getFromLS, saveToLS } from '@utils';
 import { useState } from 'react';
-import { Link } from 'react-router';
 
 const demos = [
     { id: 'placeholder', name: 'Placeholder', component: <div>Placeholder Demo Content</div> },
     { id: 'toast', name: 'Toast', component: <ToastDemo /> },
     { id: 'alert', name: 'Alert', component: <AlertDemo /> },
+    { id: 'reactQuery', name: 'React Query', component: <ReactQueryDemoLoader /> },
 ];
 
 export const DemoLoaderMenu = () => {
-    const [selectedDemo, setSelectedDemo] = useState(demos[1].id);
+    const [selectedDemo, setSelectedDemo] = useState(() => {
+        const demoId = getFromLS('demoId');
+        return demoId ?? 'placeholder';
+    });
     const currentDemo = demos.find((demo) => demo.id === selectedDemo);
 
     return (
@@ -27,26 +33,22 @@ export const DemoLoaderMenu = () => {
                     <ul className="space-y-2">
                         {demos.map((demo) => (
                             <li key={demo.id}>
-                                <button
-                                    onClick={() => setSelectedDemo(demo.id)}
-                                    className={`w-full rounded-md px-3 py-2 text-left ${
+                                <Button
+                                    variant={'ghost'}
+                                    onClick={() => {
+                                        setSelectedDemo(demo.id);
+                                        saveToLS('demoId', demo.id);
+                                    }}
+                                    className={`w-full rounded-md px-3 py-2 text-left text-base font-bold ${
                                         selectedDemo === demo.id ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'
                                     }`}
                                 >
                                     {demo.name}
-                                </button>
+                                </Button>
                             </li>
                         ))}
                     </ul>
                 </nav>
-                <div className="mt-8">
-                    <Link
-                        to="/"
-                        className="text-red-600 hover:underline"
-                    >
-                        ← Back to Home
-                    </Link>
-                </div>
             </div>
 
             {/* Demo Content Area */}
