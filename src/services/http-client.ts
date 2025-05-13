@@ -57,6 +57,10 @@ export class HttpClient {
         return this.request<TResult>(endpoint, { method: 'PUT', data });
     }
 
+    async patch<TResult>(endpoint: string, data: string | FormData): Promise<TResult> {
+        return this.request<TResult>(endpoint, { method: 'PATCH', data });
+    }
+
     async delete<TResult>(endpoint: string): Promise<TResult> {
         return this.request<TResult>(endpoint, { method: 'DELETE' });
     }
