@@ -1,5 +1,6 @@
 import { AlertDemo } from '@/demos/alert-demo/alert-demo';
 import { ReactQueryDemoLoader } from '@/demos/react-query-demo/react-query-demo-loader';
+import ReactTableDemoLoader from '@/demos/react-table-demo/react-table-demo-loader';
 import { ToastDemo } from '@/demos/toast-demo/toast-demo';
 import PageMetaData from '@components/PageMetaData';
 import { Button } from '@ui/button';
@@ -11,23 +12,24 @@ const demos = [
     { id: 'toast', name: 'Toast', component: <ToastDemo /> },
     { id: 'alert', name: 'Alert', component: <AlertDemo /> },
     { id: 'reactQuery', name: 'React Query', component: <ReactQueryDemoLoader /> },
+    { id: 'reactTable', name: 'React Table', component: <ReactTableDemoLoader /> },
 ];
 
 export const DemoLoaderMenu = () => {
     const [selectedDemo, setSelectedDemo] = useState(() => {
         const demoId = getFromLS('demoId');
-        return demoId ?? 'placeholder';
+        return demoId ?? 'reactTable';
     });
     const currentDemo = demos.find((demo) => demo.id === selectedDemo);
 
     return (
-        <div className="flex min-h-screen">
+        <div className="grid grid-cols-2 min-h-screen">
             <PageMetaData
                 title={'Demo: ' + currentDemo?.name || 'Demos'}
                 description={'Demo showcase for various components'}
             />
             {/*Sidebar Menu */}
-            <div className="w-64 border-r border-gray-200 bg-gray-100 p-4">
+            <div className="w-fit border-r border-gray-200 bg-gray-100 p-4">
                 <h2 className="mb-4 text-xl font-bold">Demos</h2>
                 <nav>
                     <ul className="space-y-2">
@@ -50,9 +52,8 @@ export const DemoLoaderMenu = () => {
                     </ul>
                 </nav>
             </div>
-
             {/* Demo Content Area */}
-            <div className="flex-1 p-6">
+            <div className="w-full p-6">
                 <h1 className="mb-6 text-2xl font-bold">{currentDemo?.name}</h1>
                 <div className="rounded-lg bg-white p-6 shadow">{currentDemo?.component}</div>
             </div>
